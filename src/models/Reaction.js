@@ -20,6 +20,4 @@ const reactionsSchema = {
   },
 };
 
-const schema = new Schema(userSchama);
-
-reactionsSchema;
+module.exports = reactionsSchema;
