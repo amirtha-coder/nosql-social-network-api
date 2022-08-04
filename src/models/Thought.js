@@ -9,6 +9,11 @@ const thoughtSchema = {
     maxLength: 280,
     trim: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: moment(d).format("MMMM d, YYYY"),
+  },
   email: {
     type: String,
     unique: true,
