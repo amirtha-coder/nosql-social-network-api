@@ -21,5 +21,8 @@
   "homepage": "https://github.com/amirtha-coder/nosql-social-network-api#readme",
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "mongoose": "^6.5.0"
   }
 }

@@ -1,0 +1,20 @@
+Thoughts
+Reactions
+Friends
+
+Tech Stack
+- NodeJS
+- Express
+- MongoDB
+- Mongoose
+- Date Library (date-fns/momentJS)
+
+Seeds
+- add a seed script (package.json)
+- seed code which includes data (json/js) [fakerJS]
+
+API
+- users (GET, POST, PUT, DELETE)
+- thoughts (GET, POST, PUT, DELETE)
+
+PLEASE ADD POSTMAN COLLECTION
