@@ -13,7 +13,7 @@ const thoughtSchema = {
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (date) => date && moment(date).unix(),
+    get: (date) => moment(date),
   },
   email: {
     type: String,

@@ -1,18 +1,26 @@
 [
   {
     "username": "Bob",
-    "email": "bob@email.com"
+    "email": "bob@email.com",
+    "thoughts": [],
+    "friends": []
   },
   {
     "username": "Sarah",
-    "email": "sarah@email.com"
+    "email": "sarah@email.com",
+    "thoughts": [],
+    "friends": []
   },
   {
     "username": "Molly",
-    "email": "molly@email.com"
+    "email": "molly@email.com",
+    "thoughts": [],
+    "friends": []
   },
   {
     "username": "Charlie",
-    "email": "charlie@email.com"
+    "email": "charlie@email.com",
+    "thoughts": [],
+    "friends": []
   }
 ]

@@ -1,13 +1,13 @@
-const { Schema, model } = require("mongoose");
-const mongoose = require("../config/connection");
+const { Schema } = require("mongoose");
 
 const moment = require("moment");
 
 const schema = {
   reactionId: {
     type: Schema.Types.ObjectId,
-    default: mongoose.Types.ObjectId(),
+    auto: true,
   },
+
   reactionBody: {
     type: String,
     required: true,
@@ -20,7 +20,6 @@ const schema = {
 
   createdAt: {
     type: Date,
-    default: Date.now,
     get: (date) => date && moment(date).unix(),
   },
 };
