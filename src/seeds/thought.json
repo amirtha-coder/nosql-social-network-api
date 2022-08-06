@@ -1,0 +1,13 @@
+[
+  {
+    "thoughtText": "test",
+    "createdAt": "January 21 2021",
+    "email": "bob@email.com",
+    "username": "Bob",
+    "reaction": {
+      "reactionBody": "Test, test, test, test, test.",
+      "username": "Sarah",
+      "createdAt": "July 19 2022"
+    }
+  }
+]

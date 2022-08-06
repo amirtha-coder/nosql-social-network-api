@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
-const reactionsSchema = {
+const schema = {
   reactionId: {
     type: Schema.Types.ObjectId,
-    default: "",
+    default: new Schema.Types.ObjectId(),
   },
   reactionBody: {
     type: String,
@@ -21,5 +21,7 @@ const reactionsSchema = {
     get: moment(d).format("MMMM d, YYYY"),
   },
 };
+
+const reactionsSchema = new Schema(schema);
 
 module.exports = reactionsSchema;
