@@ -1,9 +1,12 @@
 const { Schema, model } = require("mongoose");
+const mongoose = require("../config/connection");
+
+const moment = require("moment");
 
 const schema = {
   reactionId: {
     type: Schema.Types.ObjectId,
-    default: new Schema.Types.ObjectId(),
+    default: mongoose.Types.ObjectId(),
   },
   reactionBody: {
     type: String,
@@ -18,10 +21,13 @@ const schema = {
   createdAt: {
     type: Date,
     default: Date.now,
-    get: moment(d).format("MMMM d, YYYY"),
+    get: (date) => date && moment(date).unix(),
   },
 };
 
-const reactionsSchema = new Schema(schema);
+const reactionsSchema = new Schema(schema, {
+  timestamps: true,
+  reactionId: Number,
+});
 
 module.exports = reactionsSchema;

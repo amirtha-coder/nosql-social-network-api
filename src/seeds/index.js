@@ -1,5 +1,5 @@
-const connection = require("../config/connection");
-
+require("dotenv").config();
+const { default: mongoose } = require("mongoose");
 const { Thought, User } = require("../models");
 const thought = require("./thought.json");
 const user = require("./user.json");
@@ -17,8 +17,18 @@ const seedsUsers = async () => {
 };
 const init = async () => {
   try {
-    console.log("Seeding database...");
-    await connection.sync({ force: true });
+    const DB_NAME = process.env.DB_NAME;
+    const MONGODB_URI =
+      process.env.MONGODB_URI || `mongodb://localhost:27017/${DB_NAME}`;
+
+    const options = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    };
+
+    await mongoose.connect(MONGODB_URI, options);
+
+    console.log("[INFO]: Successfully connected to DB");
 
     //seed all data from entities
     await seedsUsers();

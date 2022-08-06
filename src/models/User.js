@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const userSchama = {
+const userSchema = {
   username: {
     type: String,
     unique: true,
@@ -24,11 +24,10 @@ const userSchama = {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    userSchama.virtual("friendCount"),
   ],
 };
 
-const schema = new Schema(userSchama, {
+const schema = new Schema(userSchema, {
   toJSON: {
     virtuals: true,
   },
