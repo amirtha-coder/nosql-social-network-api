@@ -17,7 +17,6 @@ const seedsUsers = async () => {
   console.log(thoughtsFromDB);
   const promises = user.map(async (user) => {
     const chooseRandomIndex = Math.floor(Math.random() * thoughtsFromDB.length);
-    console.log();
     user.thoughts.push(thoughtsFromDB[chooseRandomIndex]._id);
     return User.create(user);
   });
