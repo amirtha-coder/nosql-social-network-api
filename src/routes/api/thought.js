@@ -10,7 +10,8 @@ const {
 
 const reaction = require("./reaction.js");
 
-const router = Router();
+const router = Router({ mergeParams: true });
+
 router.get("/", getAllThoughts);
 router.get("/:id", getAllThoughtsById);
 router.post("/", createThought);
