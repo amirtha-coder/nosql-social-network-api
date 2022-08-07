@@ -8,22 +8,14 @@ const {
   deleteThought,
 } = require("../../controllers/thought");
 
-const {
-  createReactions,
-  deleteReactions,
-} = require("../../controllers/reaction");
+const reaction = require("./reaction.js");
 
 const router = Router();
-router.get(getAllThoughts, "/api/thoughts");
-router.get(getAllThoughtsById, "/api/thoughts/:id");
-router.post(createThought, "/api/thoughts");
-router.put(updateThought, "/api/thought/:id");
-router.delete(deleteThought, "/api/thought/:id");
-
-router.post(createReactions, "/api/thoughts/:thoughtId/reactions/:reactionId");
-router.delete(
-  deleteReactions,
-  "/api/thoughts/:thoughtId/reactions/:reactionId"
-);
+router.get("/", getAllThoughts);
+router.get("/:id", getAllThoughtsById);
+router.post("/", createThought);
+router.put("/:id", updateThought);
+router.delete("/:id", deleteThought);
+router.use("/:thoughtId", reaction);
 
 module.exports = router;

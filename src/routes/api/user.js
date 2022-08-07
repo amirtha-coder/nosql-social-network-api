@@ -8,16 +8,14 @@ const {
   deleteUser,
 } = require("../../controllers/user");
 
-const { createFriends, deleteFriends } = require("../../controllers/friend");
+const friend = require("./friend.js");
 const router = Router();
 
-router.get(getAllUsers, "/api/users");
-router.get(getAllUsersById, "/api/users/:id");
-router.post(createUser, "/api/users");
-router.put(updateUser, "/api/user/:id");
-router.delete(deleteUser, "/api/user/:id");
-
-router.post(createFriends, "/api/users/:userId/friends/:friendId");
-router.delete(deleteFriends, "/api/users/:userId/friends/:friendId");
+router.get("/", getAllUsers);
+router.get("/:id", getAllUsersById);
+router.post("/", createUser);
+router.put(":id", updateUser);
+router.delete("/:id", deleteUser);
+router.use("/:userId", friend);
 
 module.exports = router;
