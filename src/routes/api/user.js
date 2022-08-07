@@ -12,7 +12,7 @@ const friend = require("./friend.js");
 const router = Router();
 
 router.get("/", getAllUsers);
-router.get("/:id", getAllUsersById);
+router.get("/:_id", getAllUsersById);
 router.post("/", createUser);
 router.put(":id", updateUser);
 router.delete("/:id", deleteUser);
