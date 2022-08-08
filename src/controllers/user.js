@@ -34,16 +34,14 @@ const createUser = async (req, res) => {
     const friends = [];
     const thoughts = [];
 
-    const userExists = User.findOne({ where: email });
-
-    if (userExists) {
-      return res.json(`User already exists with this email: ${email}`);
+    if (username && email) {
+      await User.create({ username, email, friends, thoughts });
+      return res.json({ success: true });
+    } else {
+      res.status(404).json({ success: false });
     }
-    const user = await User.create(username, email, friends, thoughts);
-
-    return res.json({ success: true });
   } catch (error) {
-    console.log(`[ERROR]: Failed to create user | ${error.message}`);
+    console.log(error);
 
     return res.status(500).json({ success: false });
   }
@@ -68,15 +66,11 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const userExists = await User.findByPk(id);
+    const userExists = await User.findById(id);
 
     // delete user
     if (userExists) {
-      await User.destroy({
-        where: {
-          id,
-        },
-      });
+      await User.deleteMany({ id: id });
       return res
         .status(200)
         .json({ success: true, message: "Successfully deleted user" });
