@@ -16,15 +16,6 @@ const getAllUsersById = async (req, res) => {
     const { id } = req.params;
 
     const data = await User.findOne({ _id: id });
-    // .populate({
-    //   path: "thoughts",
-    //   select: "-__v",
-    // })
-    // .populate({
-    //   path: "friends",
-    //   select: "-__v",
-    // })
-    // .select("-__v");
 
     if (!data) {
       return res.status(404).json({ success: false });
@@ -46,7 +37,7 @@ const createUser = async (req, res) => {
     const userExists = User.findOne({ where: email });
 
     if (userExists) {
-      console.log(`User already exists with this email: ${email}`);
+      return res.json(`User already exists with this email: ${email}`);
     }
     const user = await User.create(username, email, friends, thoughts);
 
