@@ -15,21 +15,23 @@ const getAllUsersById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const data = await User.findOne({ where: id });
-
-    const { username } = data;
-
-    const findUserThoughts = await Thought.findOne({ where: username });
-
-    console.log(data);
+    const data = await User.findOne({ _id: id });
+    // .populate({
+    //   path: "thoughts",
+    //   select: "-__v",
+    // })
+    // .populate({
+    //   path: "friends",
+    //   select: "-__v",
+    // })
+    // .select("-__v");
 
     if (!data) {
       return res.status(404).json({ success: false });
     }
-
-    return res.json({ success: true, data });
+    res.status(200).json({ success: true, data });
   } catch (error) {
-    console.log(`[ERROR]: Failed to get user | ${error.message}`);
+    console.log(error);
 
     return res.status(500).json({ success: false });
   }

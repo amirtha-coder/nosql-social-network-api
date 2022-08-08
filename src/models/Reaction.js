@@ -20,7 +20,8 @@ const schema = {
 
   createdAt: {
     type: Date,
-    get: (date) => date && moment(date).unix(),
+    default: Date.now,
+    get: (date) => moment(date).format("ddd, Do MMM, YYYY h:mmA"),
   },
 };
 
