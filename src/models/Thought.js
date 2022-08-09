@@ -13,7 +13,7 @@ const thoughtSchema = {
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (date) => moment(date).format("ddd, Do MMM, YYYY h:mmA"),
+    get: (date) => moment(date),
   },
   email: {
     type: String,
@@ -26,7 +26,7 @@ const thoughtSchema = {
     required: true,
   },
 
-  reactions: reactionsSchema,
+  reactions: [reactionsSchema],
 };
 
 const schema = new Schema(thoughtSchema, {

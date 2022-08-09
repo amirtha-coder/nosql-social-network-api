@@ -21,7 +21,7 @@ const schema = {
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (date) => moment(date).format("ddd, Do MMM, YYYY h:mmA"),
+    get: (date) => moment(date),
   },
 };
 
