@@ -6,15 +6,12 @@ const createReactions = async (req, res) => {
 
     const reaction = { reactionBody, username };
 
-    console.log(reaction);
-
     if (thoughtId) {
       const data = await Thought.findOneAndUpdate(
         { _id: thoughtId },
         { $addToSet: { reactions: reaction } },
         { new: true }
       );
-      console.log(data);
       return res.status(200).json({ success: true, data });
     }
   } catch (error) {
@@ -23,7 +20,6 @@ const createReactions = async (req, res) => {
 };
 const deleteReactions = async (req, res) => {
   try {
-    console.log(req.params);
     const { thoughtId, reactionId } = req.params;
 
     const data = await Thought.findOneAndUpdate(
@@ -31,7 +27,6 @@ const deleteReactions = async (req, res) => {
       { $pull: { reactions: { _id: reactionId } } },
       { new: true }
     );
-    console.log(data);
 
     return res.status(200).json({ success: true, data });
   } catch (error) {

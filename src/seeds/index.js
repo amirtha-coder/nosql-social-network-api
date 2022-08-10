@@ -14,7 +14,6 @@ const seedThoughts = async () => {
 const seedsUsers = async () => {
   await User.deleteMany();
   const thoughtsFromDB = await Thought.find();
-  console.log(thoughtsFromDB);
   const promises = user.map(async (user) => {
     const chooseRandomIndex = Math.floor(Math.random() * thoughtsFromDB.length);
     user.thoughts.push(thoughtsFromDB[chooseRandomIndex]._id);

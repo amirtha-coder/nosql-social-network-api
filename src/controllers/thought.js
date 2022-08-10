@@ -29,7 +29,6 @@ const getAllThoughtsById = async (req, res) => {
 };
 const createThought = async (req, res) => {
   try {
-    console.log(req.body);
     const { thoughtText, email, username } = req.body;
     const reactions = [];
 

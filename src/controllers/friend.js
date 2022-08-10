@@ -9,7 +9,6 @@ const createFriends = async (req, res) => {
         { $push: { friends: friendId } },
         { new: true }
       );
-      console.log(data);
       return res.status(200).json({ success: true, data });
     }
   } catch (error) {
@@ -18,7 +17,6 @@ const createFriends = async (req, res) => {
 };
 const deleteFriends = async (req, res) => {
   try {
-    console.log(req.params);
     const { userId, friendId } = req.params;
 
     const data = await User.findOneAndUpdate(
@@ -26,7 +24,6 @@ const deleteFriends = async (req, res) => {
       { $pull: { friends: friendId } },
       { new: true }
     );
-    console.log(data);
 
     return res.status(200).json({ success: true, data });
   } catch (error) {
