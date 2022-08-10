@@ -3,9 +3,6 @@
     "thoughtText": "test",
     "email": "bob@email.com",
     "username": "Bob",
-    "reaction": {
-      "reactionBody": "Test, test, test, test, test.",
-      "username": "Sarah"
-    }
+    "reaction": []
   }
 ]

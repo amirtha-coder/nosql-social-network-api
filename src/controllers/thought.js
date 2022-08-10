@@ -1,4 +1,4 @@
-const { Thought, thought } = require("../models");
+const { Thought } = require("../models");
 
 const getAllThoughts = async (req, res) => {
   try {
@@ -29,21 +29,18 @@ const getAllThoughtsById = async (req, res) => {
 };
 const createThought = async (req, res) => {
   try {
-    const { thoughtText, email, thoughtname, thoughtId } = req.body;
+    console.log(req.body);
+    const { thoughtText, email, username } = req.body;
     const reactions = [];
 
-    if (thoughtText && email && thoughtname) {
+    if (thoughtText && email && username) {
       const newThought = await Thought.create({
         thoughtText,
         email,
-        thoughtname,
+        username,
         reactions,
       });
-      const { _id: thoughtId } = newThought;
 
-      const data = await thought.findByIdAndUpdate(thoughtId, {
-        $set: { thoughts: thoughtId },
-      });
       return res.json({ success: true });
     } else {
       res.status(404).json({ success: false });
@@ -57,12 +54,12 @@ const createThought = async (req, res) => {
 const updateThought = async (req, res) => {
   try {
     const { id } = req.params;
-    const { thoughtText, createdAt, email, thoughtname } = req.body;
-    if (!thoughtText && !createdAt && !email && !thoughtname) {
+    const { thoughtText, createdAt, email, username } = req.body;
+    if (!thoughtText && !createdAt && !email && !username) {
       return res.status(404).json({ success: false });
     }
     const data = await Thought.findByIdAndUpdate(id, {
-      $set: { thoughtText, createdAt, email, thoughtname },
+      $set: { thoughtText, createdAt, email, username },
     });
     return res.json({ success: true, data });
   } catch (error) {
@@ -74,16 +71,12 @@ const updateThought = async (req, res) => {
 const deleteThought = async (req, res) => {
   try {
     const { id } = req.params;
-    const thoughtExists = await Thought.findById(id);
 
     // delete thought
-    if (thoughtExists) {
-      await thought.deleteMany({ id: id });
-      return res
-        .status(200)
-        .json({ success: true, message: "Successfully deleted thought" });
-    }
-    return res.status(404).json({ error: "Failed to delete thought" });
+    await Thought.findByIdAndDelete({ _id: id });
+    return res
+      .status(200)
+      .json({ success: true, message: "Successfully deleted thought" });
   } catch (error) {
     // catch error and return status 500
     console.log(`[ERROR]: Failed to delete thought | ${error.message}`);

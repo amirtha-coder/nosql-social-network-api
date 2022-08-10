@@ -66,16 +66,13 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const userExists = await User.findById(id);
 
     // delete user
-    if (userExists) {
-      await User.deleteMany({ id: id });
-      return res
-        .status(200)
-        .json({ success: true, message: "Successfully deleted user" });
-    }
-    return res.status(404).json({ error: "Failed to delete user" });
+
+    await User.findByIdAndDelete({ _id: id });
+    return res
+      .status(200)
+      .json({ success: true, message: "Successfully deleted user" });
   } catch (error) {
     // catch error and return status 500
     console.log(`[ERROR]: Failed to delete user | ${error.message}`);

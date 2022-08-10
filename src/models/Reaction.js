@@ -5,7 +5,7 @@ const moment = require("moment");
 const schema = {
   reactionId: {
     type: Schema.Types.ObjectId,
-    auto: true,
+    autoIndex: true,
   },
 
   reactionBody: {
@@ -27,7 +27,6 @@ const schema = {
 
 const reactionsSchema = new Schema(schema, {
   timestamps: true,
-  reactionId: Number,
 });
 
 module.exports = reactionsSchema;
